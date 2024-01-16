@@ -88,22 +88,22 @@ Resources:
             sudo apt-get install nginx -y
             
             # Install AWS CLI
-            sudo apt-get install -y awscli
+            apt-get install unzip awscli -y
             
             # Start nginx
-            sudo service nginx start
+            service nginx start
             
             # Change directory to /var/www/html
             cd /var/www/html
             
             # Copy zip file from S3 bucket
-            aws s3 cp s3://contentbucketsid/your-zip-file.zip .
+            aws s3 cp s3://contentbucketsid/Application.zip .
             
             # Unzip the file
-            unzip your-zip-file.zip
+            unzip -o Application.zip
             
             # # Restart nginx (assuming this is required after changes)
-            # sudo service nginx restart
+            sudo service nginx restart
         ImageId: ami-0557a15b87f6559cf
         SecurityGroupIds:
           - !Ref WebServerSecGroup
@@ -209,4 +209,11 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
+
+Outputs:
+  WebAppLoadBalancerDNSName:
+    Description: DNS URL of The LoadBalancer
+    Value: !Join [ "", [ 'http://', !GetAtt WebAppLB.DNSName ]]
+    Export:
+      Name: !Sub ${EnvironmentName}-LB-DNSName
 
