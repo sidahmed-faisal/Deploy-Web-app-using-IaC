@@ -12,8 +12,11 @@
 ### Deployment Scripts
 * to create, delete, or update the infrastructure as needed you can run the scripts in the /Scripts folder for example
 * This command create the VPC and Network infrastructure for the servers:
+```
 $ ./Scripts/create.sh infrastack /infrastructure_template.yml /parameters.json
+```
 * Then you can create the Servers and copy the application from s3 bucker using this script:
+```
 $ ./Scripts/create.sh applicationstack /Application_template.yml /application_params.json
-
+```
  
