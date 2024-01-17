@@ -37,7 +37,7 @@ Resources:
       - IpProtocol: tcp
         FromPort: 80
         ToPort: 80
-        # SourceSecurityGroupId: !Ref LBSecGroup
+        SourceSecurityGroupId: !Ref LBSecGroup
       - IpProtocol: tcp
         FromPort: 22
         ToPort: 22
@@ -100,7 +100,9 @@ Resources:
             aws s3 cp s3://contentbucketsid/Application.zip .
             
             # Unzip the file
-            unzip -o Application.zip
+            rm index.nginx-debian.html
+            unzip -o Application.zip -d /var/www/html
+            cp -r ./Application/* /var/www/html
             
             # # Restart nginx (assuming this is required after changes)
             sudo service nginx restart
@@ -153,7 +155,7 @@ Resources:
     Properties:
       VPCZoneIdentifier:
       - Fn::ImportValue: 
-          !Sub "${EnvironmentName}-PRIV-NETS"
+          !Sub "${EnvironmentName}-PUB-NETS"
       LaunchTemplate:
         LaunchTemplateId: !Ref WebAppLaunchTemplate
         Version: !GetAtt WebAppLaunchTemplate.LatestVersionNumber
