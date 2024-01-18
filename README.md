@@ -20,3 +20,7 @@ $ ./Scripts/create.sh infrastack /infrastructure_template.yml /parameters.json
 $ ./Scripts/create.sh applicationstack /Application_template.yml /application_params.json
 ```
  
+* Load Balance DNS link:
+```
+http://appsta-webap-m2uadgbxh9cx-1303950223.us-east-1.elb.amazonaws.com/
+```
