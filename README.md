@@ -22,5 +22,5 @@ $ ./Scripts/create.sh applicationstack /Application_template.yml /application_pa
  
 * Load Balance DNS link:
 ```
-http://appsta-webap-m2uadgbxh9cx-1303950223.us-east-1.elb.amazonaws.com/
+http://appsta-webap-v8t6vbxte5la-701228122.us-east-1.elb.amazonaws.com/
 ```
